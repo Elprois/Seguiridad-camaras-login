@@ -1,0 +1,101 @@
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.certificaciones (
+  id_certificacion integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  nombre_cert character varying NOT NULL,
+  CONSTRAINT certificaciones_pkey PRIMARY KEY (id_certificacion)
+);
+CREATE TABLE public.equipo_asignado (
+  id_asignacion integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_equipo integer NOT NULL,
+  id_usuario integer NOT NULL,
+  fecha_asignacion date NOT NULL,
+  estado character varying DEFAULT 'Operativo'::character varying,
+  CONSTRAINT equipo_asignado_pkey PRIMARY KEY (id_asignacion),
+  CONSTRAINT equipo_asignado_id_equipo_fkey FOREIGN KEY (id_equipo) REFERENCES public.equipo_catalogo(id_equipo),
+  CONSTRAINT equipo_asignado_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario)
+);
+CREATE TABLE public.equipo_catalogo (
+  id_equipo integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  nombre_equipo character varying NOT NULL,
+  modelo character varying,
+  CONSTRAINT equipo_catalogo_pkey PRIMARY KEY (id_equipo)
+);
+CREATE TABLE public.evidencias_incidente (
+  id_evidencia integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_incidente integer NOT NULL,
+  tipo_archivo character varying NOT NULL,
+  url_archivo character varying NOT NULL,
+  CONSTRAINT evidencias_incidente_pkey PRIMARY KEY (id_evidencia),
+  CONSTRAINT evidencias_incidente_id_incidente_fkey FOREIGN KEY (id_incidente) REFERENCES public.incidentes(id_incidente)
+);
+CREATE TABLE public.guardia_certificaciones (
+  id_usuario integer NOT NULL,
+  id_certificacion integer NOT NULL,
+  fecha_vencimiento date,
+  CONSTRAINT guardia_certificaciones_pkey PRIMARY KEY (id_usuario, id_certificacion),
+  CONSTRAINT guardia_certificaciones_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario),
+  CONSTRAINT guardia_certificaciones_id_certificacion_fkey FOREIGN KEY (id_certificacion) REFERENCES public.certificaciones(id_certificacion)
+);
+CREATE TABLE public.incidentes (
+  id_incidente integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_usuario_reporta integer,
+  id_tipo_incidente integer NOT NULL,
+  descripcion text,
+  latitud numeric NOT NULL,
+  longitud numeric NOT NULL,
+  fecha_hora_reporte timestamp with time zone NOT NULL,
+  estado_validacion character varying DEFAULT 'Pendiente'::character varying,
+  estado_sincronizacion character varying DEFAULT 'Pendiente'::character varying,
+  CONSTRAINT incidentes_pkey PRIMARY KEY (id_incidente),
+  CONSTRAINT incidentes_id_usuario_reporta_fkey FOREIGN KEY (id_usuario_reporta) REFERENCES public.usuarios(id_usuario),
+  CONSTRAINT incidentes_id_tipo_incidente_fkey FOREIGN KEY (id_tipo_incidente) REFERENCES public.tipos_incidente(id_tipo_incidente)
+);
+CREATE TABLE public.registros_asistencia (
+  id_registro integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_turno integer NOT NULL,
+  id_usuario integer NOT NULL,
+  check_in_time timestamp with time zone NOT NULL,
+  check_out_time timestamp with time zone,
+  CONSTRAINT registros_asistencia_pkey PRIMARY KEY (id_registro),
+  CONSTRAINT registros_asistencia_id_turno_fkey FOREIGN KEY (id_turno) REFERENCES public.turnos(id_turno),
+  CONSTRAINT registros_asistencia_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario)
+);
+CREATE TABLE public.roles (
+  id_rol integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  nombre_rol character varying NOT NULL UNIQUE,
+  CONSTRAINT roles_pkey PRIMARY KEY (id_rol)
+);
+CREATE TABLE public.tipos_incidente (
+  id_tipo_incidente integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  nombre_tipo character varying NOT NULL,
+  CONSTRAINT tipos_incidente_pkey PRIMARY KEY (id_tipo_incidente)
+);
+CREATE TABLE public.turnos (
+  id_turno integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_usuario integer NOT NULL,
+  id_zona integer NOT NULL,
+  fecha_hora_inicio timestamp with time zone NOT NULL,
+  fecha_hora_fin timestamp with time zone NOT NULL,
+  estado character varying DEFAULT 'Asignado'::character varying,
+  CONSTRAINT turnos_pkey PRIMARY KEY (id_turno),
+  CONSTRAINT turnos_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario),
+  CONSTRAINT turnos_id_zona_fkey FOREIGN KEY (id_zona) REFERENCES public.zonas(id_zona)
+);
+CREATE TABLE public.usuarios (
+  id_usuario integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_rol integer NOT NULL,
+  username character varying NOT NULL UNIQUE,
+  password_hash character varying NOT NULL,
+  nombre character varying,
+  apellido character varying,
+  estado character varying DEFAULT 'Activo'::character varying,
+  CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario),
+  CONSTRAINT usuarios_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES public.roles(id_rol)
+);
+CREATE TABLE public.zonas (
+  id_zona integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  nombre_zona character varying NOT NULL,
+  CONSTRAINT zonas_pkey PRIMARY KEY (id_zona)
+);

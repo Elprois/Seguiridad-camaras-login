@@ -1,0 +1,68 @@
+<div class="page-container incidentes">
+  <h2 class="page-title">Registro y Validación de Incidentes</h2>
+
+  <app-card padding="md">
+    <form class="filter-bar" [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+      <label>
+        <span>Desde</span>
+        <input type="date" formControlName="start" />
+      </label>
+      <label>
+        <span>Hasta</span>
+        <input type="date" formControlName="end" />
+      </label>
+      <label>
+        <span>Tipo</span>
+        <select formControlName="tipo">
+          <option>Todos</option>
+          <option>IA</option>
+          <option>Manual</option>
+        </select>
+      </label>
+      <label>
+        <span>Estado</span>
+        <select formControlName="estado">
+          <option>Todos</option>
+          <option>Pendiente</option>
+          <option>Validado</option>
+          <option>Resuelto</option>
+          <option>Falsa Alarma</option>
+        </select>
+      </label>
+      <button type="submit" class="filter-bar__submit">Aplicar Filtros</button>
+    </form>
+  </app-card>
+
+  <app-card>
+    <app-table
+      [headers]="[
+        'ID del Incidente',
+        'Fecha y Hora',
+        'Tipo',
+        'Descripción',
+        'Estado',
+        'Acciones'
+      ]"
+    >
+      <tr *ngFor="let incidente of incidentes$ | async">
+        <td>{{ incidente.id }}</td>
+        <td>{{ incidente.fechaHora | date: 'dd/MM/yyyy · HH:mm' }}</td>
+        <td>{{ incidente.tipo }}</td>
+        <td>{{ incidente.descripcion }}</td>
+        <td>
+          <app-badge [variant]="badgeVariant(incidente.estado)">{{ incidente.estado }}</app-badge>
+        </td>
+        <td>
+          <button type="button" class="link" (click)="viewDetail(incidente.id)">Ver Detalles</button>
+        </td>
+      </tr>
+    </app-table>
+
+    <app-pagination
+      [totalItems]="totalItems"
+      [itemsPerPage]="5"
+      [currentPage]="currentPage"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </app-card>
+</div>

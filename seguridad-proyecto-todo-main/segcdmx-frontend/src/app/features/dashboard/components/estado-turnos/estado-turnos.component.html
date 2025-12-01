@@ -1,0 +1,11 @@
+<app-card heading="Estado de Turnos del Personal">
+  <ul class="turnos-status-list">
+    <li *ngFor="let estado of estados$ | async" [ngClass]="'status-' + estado.estado_turno.toLowerCase()">
+      <div class="status-dot"></div>
+      <div class="status-info">
+        <p class="status-info__name">{{ estado.nombre }} {{ estado.apellido }} - {{ estado.estado_turno }}</p>
+        <p class="status-info__time">{{ estado.hora }}</p>
+      </div>
+    </li>
+  </ul>
+</app-card>

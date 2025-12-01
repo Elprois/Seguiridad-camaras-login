@@ -1,0 +1,12 @@
+<section class="card" [ngClass]="paddingClass">
+  <header class="card__header" *ngIf="heading || subtitle">
+    <div>
+      <p class="card__eyebrow" *ngIf="subtitle">{{ subtitle }}</p>
+      <h3 class="card__title" *ngIf="heading">{{ heading }}</h3>
+    </div>
+    <ng-content select="[card-actions]"></ng-content>
+  </header>
+  <div class="card__body">
+    <ng-content></ng-content>
+  </div>
+</section>

@@ -1,0 +1,159 @@
+-- ============================================================
+-- CREAR BASE DE DATOS PARA EL PROYECTO SEGCDMX
+-- ============================================================
+
+-- Crear la base de datos (cámbiale el nombre si quieres)
+CREATE DATABASE IF NOT EXISTS segcdmx_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- Usar la base de datos
+USE segcdmx_db;
+
+-- -----------------------------------------------------
+-- 1. Tablas Centrales (Usuarios y Roles)
+-- -----------------------------------------------------
+
+-- Define los tipos de usuario (Admin, Guardia, etc.)
+CREATE TABLE IF NOT EXISTS Roles (
+    id_rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_rol VARCHAR(50) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+-- Almacena los datos de todos los usuarios (Guardias, Admins)
+CREATE TABLE IF NOT EXISTS Usuarios (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_rol INT NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    estado ENUM('Activo', 'Inactivo') DEFAULT 'Activo',
+    
+    FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
+) ENGINE=InnoDB;
+
+-- -----------------------------------------------------
+-- 2. Tablas de Operaciones (Turnos y Asistencia)
+-- -----------------------------------------------------
+
+-- Almacena las zonas de trabajo (ej. "Sector A-01")
+CREATE TABLE IF NOT EXISTS Zonas (
+    id_zona INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_zona VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+-- Almacena el calendario de turnos que el Admin asigna
+CREATE TABLE IF NOT EXISTS Turnos (
+    id_turno INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL, -- (MODIFICADO: antes id_guardia)
+    id_zona INT NOT NULL,
+    fecha_hora_inicio DATETIME NOT NULL,
+    fecha_hora_fin DATETIME NOT NULL,
+    estado ENUM('Asignado', 'Completado', 'Cancelado') DEFAULT 'Asignado',
+    
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario), -- (MODIFICADO)
+    FOREIGN KEY (id_zona) REFERENCES Zonas(id_zona)
+) ENGINE=InnoDB;
+
+-- Registra el Check-in y Check-out real del guardia desde el móvil
+CREATE TABLE IF NOT EXISTS Registros_Asistencia (
+    id_registro INT PRIMARY KEY AUTO_INCREMENT,
+    id_turno INT NOT NULL,
+    id_usuario INT NOT NULL, -- (MODIFICADO: antes id_guardia)
+    check_in_time DATETIME NOT NULL,
+    check_out_time DATETIME NULL, -- Nulo hasta que el guardia hace check-out
+    
+    FOREIGN KEY (id_turno) REFERENCES Turnos(id_turno),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) -- (MODIFICADO)
+) ENGINE=InnoDB;
+
+-- -----------------------------------------------------
+-- 3. Tablas de Incidentes (El Corazón del Reporte)
+-- -----------------------------------------------------
+
+-- Opciones del menú desplegable "Tipo de Incidente"
+CREATE TABLE IF NOT EXISTS Tipos_Incidente (
+    id_tipo_incidente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_tipo VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+-- Almacena cada incidente reportado (Guardia o IA)
+CREATE TABLE IF NOT EXISTS Incidentes (
+    id_incidente INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario_reporta INT NULL, -- (MODIFICADO: antes id_guardia_reporta)
+    id_tipo_incidente INT NOT NULL,
+    descripcion TEXT,
+    latitud DECIMAL(10, 8) NOT NULL,
+    longitud DECIMAL(11, 8) NOT NULL,
+    fecha_hora_reporte DATETIME NOT NULL,
+    estado_validacion ENUM('Pendiente', 'Validado') DEFAULT 'Pendiente',
+    estado_sincronizacion ENUM('Sincronizado', 'Pendiente') DEFAULT 'Pendiente',
+    
+    FOREIGN KEY (id_usuario_reporta) REFERENCES Usuarios(id_usuario), -- (MODIFICADO)
+    FOREIGN KEY (id_tipo_incidente) REFERENCES Tipos_Incidente(id_tipo_incidente)
+) ENGINE=InnoDB;
+
+-- Almacena las fotos y videos de la pantalla "Adjuntar Evidencia"
+CREATE TABLE IF NOT EXISTS Evidencias_Incidente (
+    id_evidencia INT PRIMARY KEY AUTO_INCREMENT,
+    id_incidente INT NOT NULL,
+    tipo_archivo ENUM('Imagen', 'Video') NOT NULL,
+    url_archivo VARCHAR(255) NOT NULL, -- URL donde se guarda el archivo
+    
+    FOREIGN KEY (id_incidente) REFERENCES Incidentes(id_incidente)
+) ENGINE=InnoDB;
+
+-- -----------------------------------------------------
+-- 4. Tablas de Inventario (Equipo)
+-- -----------------------------------------------------
+
+-- Lista maestra de todo el equipo disponible
+CREATE TABLE IF NOT EXISTS Equipo_Catalogo (
+    id_equipo INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_equipo VARCHAR(100) NOT NULL,
+    modelo VARCHAR(100)
+) ENGINE=InnoDB;
+
+-- Conecta un equipo específico con un guardia específico
+CREATE TABLE IF NOT EXISTS Equipo_Asignado (
+    id_asignacion INT PRIMARY KEY AUTO_INCREMENT,
+    id_equipo INT NOT NULL,
+    id_usuario INT NOT NULL, -- (MODIFICADO: antes id_guardia)
+    fecha_asignacion DATE NOT NULL,
+    estado ENUM('Operativo', 'En Reparacion') DEFAULT 'Operativo',
+    
+    FOREIGN KEY (id_equipo) REFERENCES Equipo_Catalogo(id_equipo),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) -- (MODIFICADO)
+) ENGINE=InnoDB;
+
+-- -----------------------------------------------------
+-- 5. Tablas de Soporte (Certificaciones)
+-- -----------------------------------------------------
+
+-- Almacena las certificaciones requeridas (RF-01)
+CREATE TABLE IF NOT EXISTS Certificaciones (
+    id_certificacion INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_cert VARCHAR(150) NOT NULL
+) ENGINE=InnoDB;
+
+-- Conecta a un guardia con las certificaciones que posee
+CREATE TABLE IF NOT EXISTS Guardia_Certificaciones (
+    id_usuario INT NOT NULL, -- (MODIFICADO: antes id_guardia)
+    id_certificacion INT NOT NULL,
+    fecha_vencimiento DATE,
+    
+    PRIMARY KEY (id_usuario, id_certificacion), -- (MODIFICADO)
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario), -- (MODIFICADO)
+    FOREIGN KEY (id_certificacion) REFERENCES Certificaciones(id_certificacion)
+) ENGINE=InnoDB;
+
+-- -----------------------------------------------------
+-- Insertar datos iniciales (Roles)
+-- -----------------------------------------------------
+INSERT INTO Roles (nombre_rol) VALUES
+('Administrador'),
+('Supervisor'),
+('Guardia'),
+('Cliente')
+ON DUPLICATE KEY UPDATE nombre_rol = nombre_rol; -- No hacer nada si ya existen

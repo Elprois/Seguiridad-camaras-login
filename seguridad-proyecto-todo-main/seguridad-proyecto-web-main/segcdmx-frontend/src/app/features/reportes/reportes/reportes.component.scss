@@ -1,0 +1,55 @@
+.range-form {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.range-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #9ca3af;
+}
+
+.range-form input {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.8);
+  color: #fff;
+}
+
+.reportes-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.preview__box {
+  margin-top: 16px;
+  border: 2px dashed rgba(148, 163, 184, 0.3);
+  border-radius: 24px;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  color: #9ca3af;
+}
+
+.reportes-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .reportes-content {
+    grid-template-columns: 1fr;
+  }
+
+  .range-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+

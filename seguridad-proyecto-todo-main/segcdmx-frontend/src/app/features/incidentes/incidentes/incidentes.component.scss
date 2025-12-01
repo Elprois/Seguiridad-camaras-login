@@ -1,0 +1,81 @@
+:host {
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #f9fafb;
+    margin: 0;
+  }
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    flex-grow: 1;
+  }
+
+  input, select {
+    background-color: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    color: #f1f5f9;
+    font-size: 0.9rem;
+    min-width: 150px;
+
+    &:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+  }
+}
+
+.filter-bar__submit {
+  background-color: #2563eb;
+  color: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+// Styles for the table inside the card
+app-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+app-table {
+  width: 100%;
+}
+
+// Since app-table is a component, we might need to style it globally
+// or use ::ng-deep, but for now let's assume we can style its contents.
+// This will likely require editing the table.component.scss file.
+// For now, this file will handle the layout around the components.
+
+.link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}

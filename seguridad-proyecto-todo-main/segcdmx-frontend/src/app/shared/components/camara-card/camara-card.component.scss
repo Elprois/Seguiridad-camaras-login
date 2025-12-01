@@ -1,0 +1,208 @@
+:host {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.camara-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.camara-card__image {
+  height: 200px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #333;
+
+  &--alert {
+    border-color: #f44336;
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
+  }
+
+  &__image {
+    position: relative;
+    height: 200px;
+    background-color: #000;
+    overflow: hidden;
+
+    .feed-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .config-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.6); // Slightly more visible background
+      border: none;
+      border-radius: 50%;
+      width: 32px; // Slightly larger
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem; // Larger icon
+      opacity: 1; // Always visible
+      transition: background-color 0.2s;
+      z-index: 100; // High z-index to ensure visibility
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: scale(1.1); // Add scale effect on hover
+      }
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    animation: blink 1s infinite;
+  }
+
+  &__info {
+    padding: 10px;
+    background-color: #252525;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin: 0 0 5px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .ip-badge {
+      background-color: #2196F3;
+      color: white;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 0.6rem;
+    }
+  }
+
+  &__status {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    &.ok {
+      color: #4caf50;
+    }
+
+    &.down {
+      color: #f44336;
+    }
+  }
+}
+
+.edit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+
+  .edit-content {
+    background: #333;
+    padding: 15px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+
+    h4 {
+      margin: 0 0 5px;
+      color: #fff;
+    }
+
+    .hint {
+      margin: 0 0 10px;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .edit-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+
+      button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+
+        &.save-btn {
+          background: #2196F3;
+          color: white;
+        }
+
+        &.cancel-btn {
+          background: #555;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,33 @@
+<div class="sidebar-header">
+  <div class="sidebar-header-title">SEGCDMX</div>
+  <div class="sidebar-header-subtitle">Centro de Videovigilancia</div>
+</div>
+
+<div class="sidebar-user">
+  <div>Samuel Ortiz</div>
+  <div>samuel.ortiz&#64;segcdmx.mx</div>
+</div>
+
+<nav class="sidebar-nav">
+  <a 
+    *ngFor="let item of primaryNav; trackBy: trackByLabel"
+    [routerLink]="item.route" 
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="sidebar-link"
+  >
+    <span>{{ item.icon }}</span>
+    <span>{{ item.label }}</span>
+  </a>
+</nav>
+
+<div class="sidebar-footer">
+  <button 
+    *ngFor="let item of secondaryNav; trackBy: trackByLabel"
+    type="button"
+    (click)="onNavigate(item)"
+  >
+    <span>{{ item.icon }}</span>
+    <span>{{ item.label }}</span>
+  </button>
+</div>

@@ -1,0 +1,26 @@
+Actúa como un arquitecto de software experto en Node.js y patrones de diseño.
+
+Genera el código completo en TypeScript para una API REST con Express.js que implemente un CRUD para la entidad 'Producto' (Product). La entidad debe tener los campos 'id number', 'nombre string', 'precio number'.
+
+Aplica la Arquitectura Limpia (Clean Architecture) y los principios SOLID de manera estricta.
+
+La estructura del proyecto debe ser la siguiente
+1.  `srcdomainproduct.ts` La Entidad de Dominio.
+2.  `srcapplicationportsproduct.repository.ts` Interfaz del Repositorio.
+3.  `srcapplicationuse-cases` Lógica de negocio (Use Cases).
+     `create-product.ts`
+     `get-product.ts`
+     `get-all-products.ts`
+     `update-product.ts`
+     `delete-product.ts`
+4.  `srcinfrastructuredatain-memory-product.repository.ts` Implementación del Repositorio (usa un array en memoria como base de datos para simplicidad).
+5.  `srcinfrastructurewebproduct.controller.ts` Adaptador (maneja RequestResponse e inyecta Use Cases).
+6.  `srcinfrastructurewebproduct.routes.ts` Definición de rutas.
+7.  `srcserver.ts` Inicialización de Express y configuración de inyección de dependencias.
+
+Asegúrate de
+ Usar interfaces para la capa de Puertos (SRP, DIP).
+ Inyectar las dependencias (Repositorios en Use Cases, Use Cases en Controllers) desde el archivo `server.ts` para respetar el principio de Inversión de Dependencias (DIP).
+ Mantener la lógica de negocio totalmente independiente de Express y de la implementación de la base de datos (OCP).
+
+Presenta el resultado como una lista de archivos y su contenido.

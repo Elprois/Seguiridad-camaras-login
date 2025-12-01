@@ -1,0 +1,3 @@
+const supabaseUrl = 'https://dnhdsdmoalbvxyqqkxea.supabase.co';
+
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuaGRzZG1vYWxidnh5cXFreGVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM0ODEzNTUsImV4cCI6MjA3OTA1NzM1NX0.l_-3LvOoAeozn6yC5kbpNLHj2ES4zeJf2qiXRoPtye8';

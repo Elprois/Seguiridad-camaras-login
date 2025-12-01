@@ -1,0 +1,480 @@
+Documentación del Proyecto de Software: SEGCDMX 
+Este documento resume los detalles, la metodología y el progreso del PROYECTO 
+SEGCDMX, basado en las capturas de pantalla proporcionadas. 
+1. Datos Generales del Proyecto 
+Categoría Detalle 
+Nombre del Proyecto PROYECTO SEGCDMX 
+Aplicación de la Carrera Desarrollo de Software Multiplataforma 
+Asignatura Análisis y Diseño de Software 
+Profesor ISC Marlene Ruiz Barboza 
+Duración Total 6 meses 
+Equipo 4 integrantes 
+Metodología Scrum 
+Tipo de Sistema Sistema de Gestión 
+Gestión y Herramientas Trello + WhatsApp 
+ 
+ 
+ 
+ 
+ 
+2. Visión y Tecnología 
+Categoría Detalle 
+Visión del 
+Proyecto 
+Desarrollar un sistema de gestión de vigilancia inteligente 
+que optimice la seguridad y permita la supervisión de 
+personal, drones y sensores desde una plataforma unificada. 
+Objetivo 
+General 
+Desarrollar un software que permita a SEGCDMX administrar 
+guardias, zonas, drones y sensores IoT, generando alertas 
+automáticas y reportes en tiempo real. 
+Épica del 
+Proyecto 
+Como empresa de seguridad, SEGCDMX necesita un sistema 
+integral para gestionar guardias, drones y sensores en tiempo 
+real, automatizando alertas y mejorando la eficiencia 
+operativa. 
+Tecnologías 
+Principales 
+Backend: Python (Flask) Frontend: React.js Base de Datos: 
+MySQL Integración: Drones e IoT 
+IA Integrada Visión computacional para detección de intrusos. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3. Fases del Proyecto y Cronograma 
+El proyecto se divide en 6 fases principales y 7 Sprints, de noviembre 2025 a abril 
+2026. 
+Mes Sprint Fase Actividades 
+Clave Entregables 
+Nov. 
+2025 1 - 2 Iniciación 
+Crear visión, 
+formar equipo 
+SCRUM, definir 
+backlog 
+priorizado, plan 
+de lanzamiento 
+inicial. 
+Declaración de 
+visión, roles 
+definidos, 
+épicas, backlog, 
+plan de 
+lanzamiento. 
+Dic. 
+2025 3 Planeación 
+Crear y estimar 
+historias de 
+usuario, definir 
+tareas y 
+estimaciones, 
+crear Sprint 
+backlog 
+completo. 
+Historias de 
+usuario, 
+estimaciones, 
+backlog definido. 
+Ene. 
+2026 4 Implementación 
+Diseñar 
+interfaces 
+(Figma), 
+diagramas, 
+primeras pruebas 
+APIs, Daily 
+standups. 
+Prototipo inicial, 
+diagramas 
+técnicos, registro 
+de avances. 
+Feb. 
+2026 5 Implementación 
+Refinar 
+interfaces, 
+integrar IA, validar 
+Prototipo 
+completo, 
+Mes Sprint Fase Actividades 
+Clave Entregables 
+RF y RNF, Retest 
+backlog. 
+validación de 
+requerimientos. 
+Mar. 
+2026 6 Revisión 
+Revisión del 
+producto, validar 
+y documentar, 
+aplicar feedback, 
+preparar versión 
+final. 
+Producto 
+validado, reporte 
+de sugerencias, 
+plan de mejoras. 
+Abr. 
+2026 7 Lanzamiento 
+Entrega versión 
+final, reunión de 
+cierre y 
+retrospectiva, 
+documentación 
+final. 
+Proyecto 
+entregado, 
+enlace público, 
+cierre formal. 
+ 
+ 
+4. Equipo Scrum y Backlog Priorizado 
+Rol Miembro 
+Product Owner Isaac Salcedo 
+Scrum Master Yael Rodríguez  
+Desarrollador Backend Kevin Vargas 
+Desarrolladora Frontend Melania Moo 
+ID Historia de Usuario Prioridad 
+HU-01 Registrar guardias y asignar zonas Alta 
+HU-02 Monitorear drones y alertas Alta 
+HU-03 Conectar sensores IoT Media 
+HU-04 Generar reportes de incidentes Media 
+HU-05 Inicio de sesión con roles Alta 
+ 
+5. Avance de las Fases del Proyecto 
+Fase Detalle y Avances Realizados 
+Planificación y 
+Estimación 
+Se organizó el trabajo, se dividieron historias en tareas y 
+se planificó el primer sprint. Se usó Trello. Se realizó la 
+Reunión de planificación y las Tareas estimadas en 
+días de trabajo. 
+Implementación 
+(General) 
+Se ejecutaron las tareas planificadas, se construyeron los 
+módulos funcionales y se documentó el progreso. 
+Avances realizados: Base de datos funcional, Diseños 
+completos en Figma, Código backend iniciado con 
+pruebas locales. Revisión interna y retrospectiva 
+completadas. 
+Lanzamiento 
+Entregar el prototipo funcional. Se preparará un video 
+demo, prototipo en Figma y documento técnico. El 
+Product Owner verificará el cumplimiento de los 
+requerimientos. 
+Fase Detalle y Avances Realizados 
+Artefactos 
+Generados 
+Product Backlog, Sprint Backlog, Diagrama de casos de 
+uso, Cronograma, Burndown Chart, Tablero Trello. 
+ 
+ 
+6. Detalle del Sprint 1 
+Historia Tarea Responsable Estimación 
+(días) Estado 
+HU-01 Crear base de 
+datos de guardias Kevin 4 Hecho 
+HU-01 
+Diseñar 
+formulario de 
+registro 
+Melania 2 Hecho 
+HU-05 
+Programar 
+autenticación de 
+usuarios 
+Kevin 5 En 
+progreso 
+HU-05 Diseñar pantalla 
+de login en Figma Melania 3 Hecho 
+Resultado 
+del Sprint 1 
+Se completó la 
+base de datos y el 
+diseño visual del 
+sistema. El 
+módulo de login 
+quedó 
+   
+Historia Tarea Responsable Estimación 
+(días) Estado 
+parcialmente 
+implementado. 
+Conclusión 
+La aplicación de 
+Scrum permitió al 
+equipo 
+organizarse, 
+cumplir avances 
+reales en el 
+primer sprint y 
+resolver bloques 
+de manera 
+efectiva 
+mediante la 
+colaboración 
+continua. 
+   
+ 
+7. Requerimientos del Sistema (RF y RNF) 
+Requerimientos Funcionales (RF) 
+ID Requerimiento 
+Funcional Función Distinta (Métrica/Validación) 
+RF
+01 
+Asignación Automática 
+de Turnos. 
+Permitir al administrador asignar guardias a 
+puestos, validando certificaciones y 
+evitando la doble asignación. 
+RF
+02 
+Registro de Incidentes y 
+Evidencia. 
+Permitir registrar incidente, ubicación GPS 
+$(\pm 5 \text{ metros})$, con capacidad de 
+adjuntar 5 fotos o 30s de video. 
+ID Requerimiento 
+Funcional Función Distinta (Métrica/Validación) 
+RF
+03 
+Seguimiento GPS de 
+Patrullas/Guardias. 
+Mostrar ubicación en tiempo real (intervalos 
+$\le 15 \text{ segundos}$) en un mapa. 
+RF
+04 
+Gestión de 
+Activos/Inventario. 
+Permitir dar de alta, asignar y rastrear equipo 
+crítico a cada guardia, generar reporte de 
+conciliación. 
+RF
+05 
+Generación de 
+Reportes para Cliente. 
+Acceso a portal para descargar informe 
+semanal de actividades en PDF o Excel. 
+RF
+06 
+Notificaciones de 
+Emergencia. 
+Envío de notificaciones instantáneas a 
+supervisores y guardias, alerta debe llegar 
+dentro de los $5 \text{ segundos}$ 
+posteriores. 
+RF
+07 
+Control de Accesos y 
+Autenticación. 
+Implementar módulo de autenticación para 
+acceso solo a personal autorizado. 
+RF
+08 
+Visualización de Datos 
+en Tiempo Real. 
+Panel de control interactivo para visualizar 
+ubicación de patrullas, incidentes y activos. 
+RF
+09 
+Generación de Alertas 
+Inteligentes. 
+Utilizar IA para identificar patrones inusuales 
+y generar recomendaciones. 
+RF
+10 
+Integración con 
+Sistemas Externos. 
+Integración fluida con plataformas externas 
+(videovigilancia, alarmas) sin pérdida o 
+demoras. 
+ 
+ 
+ 
+ 
+Requerimientos No Funcionales (RNF) 
+ID Categoría 
+Requerimiento No 
+Funcional 
+Específico 
+Métrica de Medición 
+RNF
+01 
+Rendimiento 
+(Performance) 
+Visualización y 
+filtrado de mapa con 
+$200$ posiciones 
+GPS concurrentes 
+$\le 2.5 \text{ 
+segundos}$. 
+Pruebas de estrés/Load 
+Testing simulando 
+$200$ usuarios GPS 
+activos. 
+RNF
+02 
+Seguridad 
+(Security) 
+Credenciales 
+cifradas con AES
+256, cambio forzoso 
+de contraseña cada 
+$90 \text{ días}$. 
+Auditoría del código y 
+base de datos, 
+verificación del 
+algoritmo de cifrado. 
+RNF
+03 
+Fiabilidad 
+(Reliability) 
+Módulo de registro 
+de incidentes 
+garantiza entrega sin 
+conectividad, 
+sincronizando al 
+reconectar. 
+Se probará registro de 
+$5$ incidentes en modo 
+avión. 
+RNF
+04 
+Disponibilidad 
+(Availability) 
+Sistema central de 
+gestión ($99.9\%$ 
+uptime o $\le 43 
+\text{ minutos}$ de 
+inactividad al mes). 
+Monitoreo continuo 
+(Pingdom, Uptime 
+Robot) para registrar 
+indisponibilidad. 
+ID Categoría 
+Requerimiento No 
+Funcional 
+Específico 
+Métrica de Medición 
+RNF
+05 
+Usabilidad 
+(Usability) 
+Registro de check
+in/check-out con $\le 
+3 \text{ toques}$ 
+(taps), excluyendo 
+credenciales. 
+Pruebas con $10$ 
+guardias, medición del 
+promedio de toques. 
+RNF
+06 
+Escalabilidad 
+(Scalability) 
+Capacidad de 
+escalar 
+horizontalmente 
+para $100\%$ de 
+aumento en usuarios 
+concurrentes y 
+volumen de datos. 
+Simulación de $200$ 
+usuarios concurrentes. 
+RNF
+07 
+Tiempo de 
+Respuesta 
+(Response Time) 
+Consultas en tiempo 
+real (seguimiento, 
+incidentes) $\le 3 
+\text{ segundos}$ 
+con baja/alta carga. 
+Pruebas de rendimiento 
+que aseguren que la 
+interfaz $\le 3 \text{ 
+segundos}$ con $100$ 
+usuarios concurrentes. 
+RNF
+08 
+Fiabilidad a 
+Fallos (Fault 
+Tolerance) 
+Diseñado para ser 
+altamente fiable, con 
+mecanismos de 
+tolerancia a fallos. 
+Inactividad máxima 
+$\le 1 \text{ hora}$ al 
+año. 
+Monitoreo de 
+disponibilidad del 
+$99.9\%$. 
+RNF
+09 
+Seguridad de los 
+Datos (Data 
+Security) 
+Protección de datos 
+sensibles 
+(credenciales, 
+Validación de cifrado en 
+reposo/transmisión. 
+Auditorías trimestrales. 
+ID 
+Categoría 
+Requerimiento No 
+Funcional 
+Específico 
+Métrica de Medición 
+incidentes, 
+geolocalización) 
+mediante cifrado y 
+controles de acceso. 
+RNF
+10 
+Compatibilidad 
+Multiplataforma 
+(Cross-Platform) 
+Compatible con 
+escritorio, móviles 
+(iOS y Android), 
+navegadores web. 
+Pruebas para garantizar 
+que $\ge 95\%$ de las 
+funciones sean 
+consistentes. 
+8. Diagramas de Casos de Uso por Épica 
+Épica 1: Gestión de Personal y Turnos 
+• Actores: Guardia, Administrador. 
+• Flujo Clave: Guardia inicia sesión, consulta horarios. Administrador actualiza 
+información de personal, asigna turnos. 
+Épica 2: Registro y Seguimiento de Incidentes 
+• Actores: Guardia, Administrador, Supervisor. 
+• Flujo Clave: Guardia registra incidente y adjunta evidencia fotográfica. 
+Administrador y Supervisor consultan reportes de incidentes, validan/tabulan 
+incidentes. 
+Épica 3: Monitoreo en Tiempo Real (Flujo de Sistema) 
+• Actores: Supervisor, Administrador, Sistema. 
+• Flujo Clave: 
+1. Sistema de Monitoreo: Sistema de IA/IoT detecta movimientos o 
+eventos Envía alerta automática. 
+2. Supervisor/Administrador: Monitorean actividad en tiempo real 
+Visualizan estado de personal y dispositivos. 
+Épica 4: Lanzamiento, Validación y Cierre (Flujo de Proceso) 
+• Actores: Product Owner, Product Owner/Cliente. 
+• Flujo Clave: 
+1. Sistema: Lanzamiento y Cierre del Proyecto. 
+2. Product Owner: Enviar retrospectiva del sprint Validar entregables del 
+sistema. 
+3. Product Owner/Cliente: Documentar cierre del proyecto Publicar 
+estatus final del proyecto. 

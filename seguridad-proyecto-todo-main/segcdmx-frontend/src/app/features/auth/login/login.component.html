@@ -1,0 +1,45 @@
+<div class="login">
+  <div class="login__hero">
+    <div>
+      <h1>SEGCDMX</h1>
+      <p class="login__subtitle">Seguridad y Monitoreo para la Ciudad</p>
+    </div>
+    <div class="login__hero-visual"></div>
+  </div>
+
+  <div class="login__form">
+    <div>
+      <h2>Portal de Administración y Monitoreo</h2>
+      <p class="login__lead">Ingresa tus credenciales para acceder.</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <label>
+        <span>Usuario</span>
+        <input type="text" formControlName="username" placeholder="Admin, Supervisor, Cliente" />
+        <div *ngIf="loginForm.controls.username.invalid && (loginForm.controls.username.dirty || loginForm.controls.username.touched)" class="login__error">
+          <small *ngIf="loginForm.controls.username.errors?.['required']">El usuario es requerido.</small>
+        </div>
+      </label>
+
+      <label>
+        <span>Contraseña</span>
+        <input type="password" formControlName="password" placeholder="Introduce tu contraseña" />
+        <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)" class="login__error">
+          <small *ngIf="loginForm.controls.password.errors?.['required']">La contraseña es requerida.</small>
+          <small *ngIf="loginForm.controls.password.errors?.['minlength']">La contraseña debe tener al menos 4 caracteres.</small>
+        </div>
+      </label>
+
+      <p *ngIf="errorMessage" class="login__error">{{ errorMessage }}</p>
+
+      <app-primary-button type="submit" label="INGRESAR" [fullWidth]="true" [disabled]="loginForm.invalid" />
+
+      <button type="button" class="login__link">¿Olvidaste tu contraseña?</button>
+    </form>
+
+    <footer class="login__footer">
+      <small>© 2024 SEGCDMX. Todos los derechos reservados. v1.0.0</small>
+    </footer>
+  </div>
+</div>

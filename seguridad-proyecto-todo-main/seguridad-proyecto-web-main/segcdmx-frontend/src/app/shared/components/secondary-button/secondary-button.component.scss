@@ -1,0 +1,16 @@
+@use 'src/shared/styles/variables' as *;
+
+.secondary-button {
+  background: transparent;
+  color: $color-primary;
+  border-radius: 16px;
+  padding: 12px 20px;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.secondary-button--full {
+  width: 100%;
+}
+

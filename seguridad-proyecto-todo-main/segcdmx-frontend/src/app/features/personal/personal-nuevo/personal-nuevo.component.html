@@ -1,0 +1,44 @@
+<div class="page-container personal-nuevo">
+  <h2 class="page-title">Agregar Nuevo Personal</h2>
+  <p class="subtitle">Ingrese los datos para registrar a un nuevo miembro del personal.</p>
+
+  <app-card>
+    <form class="manual-form" [formGroup]="guardiaForm" (ngSubmit)="registrar()">
+      <label>
+        <span>Nombre</span>
+        <input type="text" formControlName="nombre" placeholder="Nombre" />
+      </label>
+      <label>
+        <span>Apellido</span>
+        <input type="text" formControlName="apellido" placeholder="Apellido" />
+      </label>
+      <label>
+        <span>Nombre de usuario</span>
+        <input type="text" formControlName="username" placeholder="usuario" />
+      </label>
+      <label>
+        <span>Contraseña</span>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+      </label>
+
+      <label>
+        <span>Rol</span>
+        <select formControlName="id_rol">
+          <option *ngFor="let rol of roles$ | async" [value]="rol.id_rol">{{ rol.nombre_rol }}</option>
+        </select>
+      </label>
+      <label>
+        <span>Estado</span>
+        <select formControlName="estado">
+          <option>Activo</option>
+          <option>Inactivo</option>
+        </select>
+      </label>
+
+      <div class="form-actions">
+        <app-primary-button type="submit" [label]="loading ? 'Registrando...' : 'Registrar Personal'" [disabled]="loading" />
+      </div>
+    </form>
+  </app-card>
+</div>
+

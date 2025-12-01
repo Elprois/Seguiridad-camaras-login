@@ -1,0 +1,33 @@
+-- SQL commands to modify the Usuarios table in Supabase.
+-- WARNING: These commands will drop the existing Usuarios table.
+-- Please make sure to backup your data before running these commands.
+
+-- Drop the foreign key constraint first if it exists
+ALTER TABLE public.turnos DROP CONSTRAINT IF EXISTS turnos_id_usuario_fkey;
+ALTER TABLE public.registros_asistencia DROP CONSTRAINT IF EXISTS registros_asistencia_id_usuario_fkey;
+ALTER TABLE public.incidentes DROP CONSTRAINT IF EXISTS incidentes_id_usuario_reporta_fkey;
+ALTER TABLE public.equipo_asignado DROP CONSTRAINT IF EXISTS equipo_asignado_id_usuario_fkey;
+ALTER TABLE public.guardia_certificaciones DROP CONSTRAINT IF EXISTS guardia_certificaciones_id_usuario_fkey;
+
+-- Drop the existing Usuarios table if it exists
+DROP TABLE IF EXISTS public.usuarios;
+
+-- Create the new Usuarios table
+CREATE TABLE public.usuarios (
+  id_usuario integer GENERATED ALWAYS AS IDENTITY NOT NULL,
+  id_rol integer NOT NULL,
+  username character varying NOT NULL UNIQUE,
+  password_hash character varying NOT NULL,
+  nombre character varying,
+  apellido character varying,
+  estado character varying DEFAULT 'Activo'::character varying,
+  CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario),
+  CONSTRAINT usuarios_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES public.roles(id_rol)
+);
+
+-- Re-add the foreign key constraints to the Usuarios table
+ALTER TABLE public.turnos ADD CONSTRAINT turnos_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario);
+ALTER TABLE public.registros_asistencia ADD CONSTRAINT registros_asistencia_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario);
+ALTER TABLE public.incidentes ADD CONSTRAINT incidentes_id_usuario_reporta_fkey FOREIGN KEY (id_usuario_reporta) REFERENCES public.usuarios(id_usuario);
+ALTER TABLE public.equipo_asignado ADD CONSTRAINT equipo_asignado_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario);
+ALTER TABLE public.guardia_certificaciones ADD CONSTRAINT guardia_certificaciones_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario);

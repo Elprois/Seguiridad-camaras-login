@@ -1,0 +1,21 @@
+@use 'shared/styles/variables' as *;
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(5, 8, 22, 0.95)),
+    $color-bg-secondary;
+}
+
+.auth-layout__card {
+  width: min(1100px, 100%);
+  background: rgba(11, 18, 32, 0.92);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 32px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+

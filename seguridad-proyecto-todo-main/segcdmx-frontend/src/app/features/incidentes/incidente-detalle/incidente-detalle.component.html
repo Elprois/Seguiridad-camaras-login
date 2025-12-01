@@ -1,0 +1,56 @@
+<div class="page-container incidente-detalle" *ngIf="incidente$ | async as incidente">
+  <div class="page-header">
+    <div>
+      <p class="subtitle">Seguimiento activo</p>
+      <h2 class="page-title">Detalle de Incidente {{ incidente.id }}</h2>
+    </div>
+  </div>
+
+  <div class="detalle-grid">
+    <div class="detalle-main">
+      <app-card heading="Ubicación del Incidente">
+        <div class="map-placeholder">Mapa embebido / heatmap</div>
+      </app-card>
+
+      <app-card heading="Evidencia Recolectada">
+        <div class="evidencias">
+          <article class="evidencia-card" *ngFor="let evidencia of evidencias">
+            <img [src]="evidencia.imagen" alt="" />
+            <div>
+              <p>{{ evidencia.titulo }}</p>
+              <span>Hora {{ evidencia.hora }} hrs</span>
+            </div>
+          </article>
+        </div>
+      </app-card>
+    </div>
+
+    <div class="detalle-side">
+      <app-card heading="Información del Incidente">
+        <ul class="details-list">
+          <li><span>Fecha y Hora</span><strong>{{ incidente.fechaHora | date: 'dd/MM/yyyy HH:mm' }}</strong></li>
+          <li><span>Fuente</span><strong>{{ incidente.tipo }}</strong></li>
+          <li><span>Guardia</span><strong>{{ incidente.guardia || 'Sistema Automático' }}</strong></li>
+          <li><span>Ubicación / Zona</span><strong>{{ incidente.zona }}</strong></li>
+        </ul>
+      </app-card>
+
+      <app-card heading="Reporte del Guardia">
+        <p>
+          Patrulla Alfa-03 acudió tras alerta IA. Se confirma presencia de personal no autorizado
+          intentando abrir un acceso secundario. Se aseguró la zona y se solicita validación del
+  video.
+        </p>
+      </app-card>
+
+      <div class="detalle-actions">
+        <app-primary-button label="Validar Incidente" [fullWidth]="true" (click)="validar()" />
+        <app-secondary-button
+          label="Marcar como Falsa Alarma"
+          [fullWidth]="true"
+          (click)="marcarFalsaAlarma()"
+        />
+      </div>
+    </div>
+  </div>
+</div>

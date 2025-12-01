@@ -1,0 +1,61 @@
+<div class="page-container turnos">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">Asignación de Turnos y Equipo</h2>
+      <p class="subtitle">Arrastra turnos al calendario para asignarlos al personal disponible.</p>
+    </div>
+  </div>
+
+  <div class="turnos-grid">
+    <div class="calendar-container">
+        <app-card heading="Octubre 2024" subtitle="Calendario general">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <span>DOM</span>
+                    <span>LUN</span>
+                    <span>MAR</span>
+                    <span>MIÉ</span>
+                    <span>JUE</span>
+                    <span>VIE</span>
+                    <span>SÁB</span>
+                </div>
+                <div class="calendar-body">
+                    <div class="calendar__day" *ngFor="let day of days">
+                        <span>{{ day }}</span>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+    <div class="turnos-sidebar">
+      <app-card heading="Guardias Disponibles">
+        <input class="search" placeholder="Filtrar por nombre o certificación" />
+        <ul class="guardias">
+          <li *ngFor="let guardia of guardias$ | async" (click)="assignTurno(guardia.id_usuario)" style="cursor: pointer;">
+            <div class="persona">
+              <div class="persona__avatar">{{ guardia.nombre.slice(0, 2) }}</div>
+              <div>
+                <strong>{{ guardia.nombre }}</strong>
+                <p>{{ guardia.estado }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </app-card>
+
+      <app-card heading="Turnos por Asignar">
+        <ul class="turnos-list">
+          <li
+            *ngFor="let turno of turnos"
+            (click)="selectTurno(turno.id)"
+            [class.active]="turno.id === selectedTurnoId"
+          >
+            <p>{{ turno.titulo }} - {{ turno.zona }}</p>
+            <span>{{ turno.inicio | date: 'HH:mm' }} - {{ turno.fin | date: 'HH:mm' }}</span>
+          </li>
+        </ul>
+      </app-card>
+    </div>
+  </div>
+</div>

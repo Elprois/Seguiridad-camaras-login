@@ -1,0 +1,12 @@
+<div class="alertas-container">
+  <h3 class="panel-title">Registro de Eventos</h3>
+  <div class="alertas-list">
+    <div *ngFor="let alerta of alertas$ | async" class="alerta-item" [ngClass]="alerta.tipo">
+      <div class="alerta-time">{{ alerta.hora | date:'HH:mm:ss' }}</div>
+      <div class="alerta-content">
+        <span class="alerta-msg">{{ alerta.mensaje }}</span>
+        <span *ngIf="alerta.camaraId" class="alerta-cam-badge">{{ alerta.camaraId }}</span>
+      </div>
+    </div>
+  </div>
+</div>

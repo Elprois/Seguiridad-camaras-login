@@ -1,0 +1,14 @@
+<div class="layout">
+  <app-sidebar class="layout-sidebar"></app-sidebar>
+
+  <div class="layout-main">
+    <header class="layout-header">
+      <h1>{{ pageTitle }}</h1>
+    </header>
+
+    <main class="layout-content">
+      <!-- ¡SIN ESTO LA PANTALLA SE QUEDA AZUL! -->
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

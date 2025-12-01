@@ -1,0 +1,38 @@
+@use 'shared/styles/variables' as *;
+
+.status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: $color-text-body;
+}
+
+.status-dot__indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $color-primary;
+  box-shadow: 0 0 12px rgba($color-primary, 0.6);
+}
+
+.success .status-dot__indicator {
+  background: $color-success;
+  box-shadow: 0 0 10px rgba($color-success, 0.6);
+}
+
+.warning .status-dot__indicator {
+  background: $color-warning;
+  box-shadow: 0 0 10px rgba($color-warning, 0.6);
+}
+
+.danger .status-dot__indicator {
+  background: $color-danger;
+  box-shadow: 0 0 10px rgba($color-danger, 0.6);
+}
+
+.muted .status-dot__indicator {
+  background: #4b5563;
+  box-shadow: none;
+}
+

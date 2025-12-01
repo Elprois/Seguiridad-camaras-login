@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead tr {
+  background-color: #020617;
+}
+
+th {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+// This will style the projected rows
+::ng-deep {
+  tbody tr {
+    border-bottom: 1px solid #1e293b;
+    transition: background-color 0.2s;
+  }
+
+  tbody tr:hover {
+    background-color: #0f172a;
+  }
+
+  td {
+    padding: 1rem 1.5rem;
+    color: #cbd5e1;
+    vertical-align: middle;
+  }
+}

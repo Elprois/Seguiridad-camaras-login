@@ -1,0 +1,30 @@
+@use 'shared/styles/variables' as *;
+
+.primary-button {
+  background-color: $color-primary;
+  color: $color-text-title;
+  padding: 12px 24px;
+  border-radius: 999px; // Pill shape
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: lighten($color-primary, 5%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    background-color: $color-text-muted;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.primary-button--full {
+  width: 100%;
+}

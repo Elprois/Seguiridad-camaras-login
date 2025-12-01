@@ -1,0 +1,18 @@
+<div class="page-container camaras">
+  <div class="page-header">
+    <h2 class="page-title">Centro de Videovigilancia</h2>
+    <div class="grid-toggle">
+      <button [class.active]="gridSize === 2" (click)="setGrid(2)">2×2 Grid</button>
+      <button [class.active]="gridSize === 3" (click)="setGrid(3)">3×3 Grid</button>
+      <button [class.active]="gridSize === 4" (click)="setGrid(4)">4×4 Grid</button>
+    </div>
+  </div>
+
+  <div class="camaras-grid" [ngClass]="'grid-' + gridSize">
+    <div *ngFor="let camara of camaras$ | async" class="camara-wrapper"
+      [class.alert-active]="activeAlertCameraId === camara.id">
+      <div class="rec-indicator">REC</div>
+      <app-camara-card [camara]="camara"></app-camara-card>
+    </div>
+  </div>
+</div>

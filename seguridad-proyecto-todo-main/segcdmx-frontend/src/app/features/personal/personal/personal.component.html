@@ -1,0 +1,37 @@
+<div class="page-container personal">
+  <div class="page-header">
+    <h2 class="page-title">Gestión de Personal</h2>
+    <button class="primary-chip" (click)="goToNuevo()">+ Agregar Nuevo Guardia</button>
+  </div>
+
+  <div class="tabs">
+    <button *ngFor="let tab of tabs" [class.active]="(filter$ | async) === tab" (click)="selectTab(tab)">
+      {{ tab }}
+    </button>
+  </div>
+
+  <app-card>
+    <app-table [headers]="['Nombre', 'Rol', 'Certificaciones', 'Estado', 'Acciones']">
+      <tr *ngFor="let guardia of filteredPersonal$ | async">
+        <td>
+          <div class="persona">
+            <div class="persona__avatar">{{ guardia.nombre.slice(0, 2) }}</div>
+            <div>
+              <strong>{{ guardia.nombre }}</strong>
+              <p>{{ guardia.username }}</p>
+            </div>
+          </div>
+        </td>
+        <td>{{ guardia.rol }}</td>
+        <td>
+          <span class="chip" *ngFor="let cert of guardia.certificaciones ?? []">{{ cert }}</span>
+        </td>
+        <td><app-badge [variant]="badgeVariant(guardia)">{{ guardia.estado }}</app-badge></td>
+        <td>
+          <button class="icon-btn">✏️</button>
+          <button class="icon-btn">👁️</button>
+        </td>
+      </tr>
+    </app-table>
+  </app-card>
+</div>

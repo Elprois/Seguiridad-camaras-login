@@ -1,0 +1,15 @@
+PS D:\project\estoyhastalaverga\fronteed-de-seguridad\segcdmx-frontend> npm start
+
+> segcdmx-frontend@0.0.0 start
+> ng serve
+
+Application bundle generation failed. [5.743 seconds]
+
+X [ERROR] TS2564: Property 'estados$' has no initializer and is not definitely assigned in the constructor. [plugin angular-compiler]
+
+    src/app/features/dashboard/components/estado-turnos/estado-turnos.component.ts:16:2:
+      16 │   estados$: Observable<RegistroAsistenciaEstado[]>;
+         ╵   ~~~~~~~~
+
+
+Watch mode enabled. Watching for file changes...

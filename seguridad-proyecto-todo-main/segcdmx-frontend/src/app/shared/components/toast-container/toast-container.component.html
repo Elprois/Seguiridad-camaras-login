@@ -1,0 +1,6 @@
+<div class="toast-container">
+  <div class="toast" *ngFor="let toast of toasts$ | async" [ngClass]="toast.variant">
+    <span>{{ toast.message }}</span>
+    <button type="button" (click)="dismiss(toast.id)">×</button>
+  </div>
+</div>

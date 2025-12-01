@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+button {
+  background: rgba(37, 99, 235, 0.12);
+  color: #93c5fd;
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.pagination__current {
+  color: #f3f4f6;
+  font-weight: 600;
+}
+

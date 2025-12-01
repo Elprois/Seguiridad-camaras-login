@@ -1,0 +1,130 @@
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 10px;
+
+  .page-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+  }
+
+  .grid-toggle {
+    display: flex;
+    gap: 5px;
+
+    button {
+      background: #333;
+      border: 1px solid #444;
+      color: #aaa;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #444;
+        color: #fff;
+      }
+
+      &.active {
+        background: #2196F3;
+        color: #fff;
+        border-color: #1976D2;
+      }
+    }
+  }
+}
+
+.camaras-grid {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+
+  &.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.camara-wrapper {
+  position: relative;
+  border: 2px solid #333;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+
+  &.alert-active {
+    border-color: #f44336;
+    animation: borderFlash 0.5s infinite alternate;
+    box-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
+  }
+
+  .rec-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #f44336;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-color: #f44336;
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes borderFlash {
+  from {
+    border-color: #f44336;
+  }
+
+  to {
+    border-color: transparent;
+  }
+}

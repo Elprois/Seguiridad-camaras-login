@@ -1,0 +1,30 @@
+<div class="page-container reportes">
+  <h2 class="page-title">Portal de Reportes para Cliente</h2>
+
+  <app-card heading="Seleccione un Rango de Fechas">
+    <form class="range-form" [formGroup]="rangoForm" (ngSubmit)="generar()">
+      <label>
+        <span>Desde</span>
+        <input type="date" formControlName="inicio" />
+      </label>
+      <label>
+        <span>Hasta</span>
+        <input type="date" formControlName="fin" />
+      </label>
+      <app-primary-button type="submit" label="Generar Informe Semanal" />
+    </form>
+  </app-card>
+
+  <div class="reportes-content">
+    <app-card heading="Resumen del Informe">
+      <div class="preview">
+        <p>{{ resumen }}</p>
+        <div class="preview__box">Área de previsualización de datos</div>
+      </div>
+    </app-card>
+    <div class="reportes-actions">
+      <app-primary-button label="Descargar en PDF" (click)="descargar('pdf')" />
+      <app-primary-button label="Descargar en Excel" (click)="descargar('excel')" />
+    </div>
+  </div>
+</div>

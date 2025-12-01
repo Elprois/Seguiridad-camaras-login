@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+  <div class="header-section">
+    <h1>CENTRO DE COMANDO Y CONTROL</h1>
+    <div class="status-indicators">
+      <span class="status-badge online">SISTEMA ONLINE</span>
+      <span class="status-badge recording">GRABANDO</span>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div class="video-wall-section">
+      <app-camaras></app-camaras>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="alerts-panel">
+        <app-alertas></app-alertas>
+      </div>
+      <div class="turnos-panel">
+        <h3 class="panel-title">Personal Activo</h3>
+        <app-estado-turnos></app-estado-turnos>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+:host {
+  .turnos-status-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-info {
+    &__name {
+      font-weight: 600;
+      color: #f1f5f9;
+      margin: 0;
+    }
+    &__time {
+      color: #94a3b8;
+      font-size: 0.875rem;
+      margin: 0.25rem 0 0;
+    }
+  }
+
+  .status-check-in .status-dot {
+    background-color: #22c55e; // green-500
+  }
+  .status-pendiente .status-dot {
+    background-color: #f97316; // orange-500
+  }
+  .status-check-out .status-dot {
+    background-color: #64748b; // slate-500
+  }
+}

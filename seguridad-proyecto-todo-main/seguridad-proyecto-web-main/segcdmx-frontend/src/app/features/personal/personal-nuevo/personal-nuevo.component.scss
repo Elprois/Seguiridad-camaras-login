@@ -1,0 +1,67 @@
+.scan-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.scan-box__frame {
+  width: 100%;
+  min-height: 260px;
+  border: 2px dashed rgba(148, 163, 184, 0.4);
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.scan-box__actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.text-link {
+  background: none;
+  border: none;
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.manual-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.manual-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.manual-form input,
+.manual-form select {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  color: #f3f4f6;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 16px;
+}
+
+.modal-buttons {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+

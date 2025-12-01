@@ -1,0 +1,35 @@
+<article class="camara-card" [ngClass]="{ 'camara-card--alert': camara.tieneAlerta }">
+  <div class="camara-card__image">
+    <!-- Video Stream or Static Image -->
+    <img [src]="getStreamUrl()" alt="Cámara Feed" class="feed-image">
+
+    <span class="camara-card__badge" *ngIf="camara.tieneAlerta">ALERTA</span>
+
+    <!-- Config Button -->
+    <button class="config-btn" (click)="toggleEdit()">
+      ⚙️
+    </button>
+
+    <!-- Edit Overlay -->
+    <div class="edit-overlay" *ngIf="isEditing">
+      <div class="edit-content">
+        <h4>Configurar IP</h4>
+        <p class="hint">Ej: 192.168.1.50:8080</p>
+        <input type="text" [(ngModel)]="tempIp" placeholder="IP:PUERTO" (keyup.enter)="saveIp()">
+        <div class="edit-actions">
+          <button class="cancel-btn" (click)="cancelEdit()">Cancelar</button>
+          <button class="save-btn" (click)="saveIp()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="camara-card__info">
+    <p class="camara-card__title">
+      {{ camara.nombre }} · {{ camara.ubicacion }}
+      <span *ngIf="camara.ipConfigurada" class="ip-badge">IP</span>
+    </p>
+    <p class="camara-card__status" [ngClass]="camara.estado === 'Operativa' ? 'ok' : 'down'">
+      {{ camara.estado }}
+    </p>
+  </div>
+</article>
