@@ -16,6 +16,7 @@ export class SidebarComponent {
   readonly primaryNav = [
     { label: 'Dashboard', icon: '📊', route: '/dashboard' },
     { label: 'Cámaras / Centro', icon: '🎥', route: '/camaras' },
+    { label: 'Grabaciones', icon: '📼', route: '/recordings' },
     { label: 'Incidentes', icon: '🚨', route: '/incidentes' },
     { label: 'Personal', icon: '👮‍♂️', route: '/personal' },
     { label: 'Turnos', icon: '🗓️', route: '/turnos' },
@@ -31,7 +32,7 @@ export class SidebarComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) {}
+  ) { }
 
   trackByLabel(_: number, item: { label: string }) {
     return item.label;

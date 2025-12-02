@@ -1,0 +1,51 @@
+<div class="table-container">
+    <table class="recordings-table">
+        <thead>
+            <tr>
+                <th>Preview</th>
+                <th>Cámara</th>
+                <th>Hora Inicio</th>
+                <th>Duración</th>
+                <th>Tipo</th>
+                <th>Tamaño</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rec of recordings" [class.locked]="rec.isLocked">
+                <td class="col-preview">
+                    <div class="thumbnail-wrapper" (click)="onPlay(rec)">
+                        <img [src]="rec.thumbnailUrl" alt="Preview">
+                        <div class="play-overlay">▶</div>
+                    </div>
+                </td>
+                <td class="col-camera">{{ rec.cameraName }}</td>
+                <td>{{ rec.startTime | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>{{ getDuration(rec.startTime, rec.endTime) }}</td>
+                <td>
+                    <span class="badge" [ngClass]="rec.triggerType.toLowerCase()">
+                        {{ rec.triggerType }}
+                    </span>
+                </td>
+                <td>{{ formatSize(rec.sizeBytes) }}</td>
+                <td class="col-actions">
+                    <button class="action-btn" (click)="onPlay(rec)" title="Reproducir">
+                        ▶
+                    </button>
+                    <button class="action-btn" (click)="onDownload(rec)" title="Descargar">
+                        ⬇
+                    </button>
+                    <button class="action-btn" (click)="onLock(rec)"
+                        [title]="rec.isLocked ? 'Desbloquear' : 'Proteger'">
+                        {{ rec.isLocked ? '🔒' : '🔓' }}
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="recordings.length === 0">
+                <td colspan="7" class="empty-state">
+                    No se encontraron grabaciones con los filtros seleccionados.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

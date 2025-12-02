@@ -41,6 +41,12 @@ export const routes: Routes = [
       { path: 'turnos', component: TurnosComponent, title: 'Asignación de Turnos y Equipo', data: { title: 'Asignación de Turnos y Equipo' } },
       { path: 'reportes', component: ReportesComponent, title: 'Portal de Reportes', data: { title: 'Portal de Reportes' } },
       { path: 'configuracion', component: ConfiguracionComponent, title: 'Configuración', data: { title: 'Configuración' } },
+      {
+        path: 'recordings',
+        loadChildren: () => import('./features/recordings/recordings.module').then(m => m.RecordingsModule),
+        title: 'Historial de Grabaciones',
+        data: { title: 'Historial de Grabaciones' }
+      },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },

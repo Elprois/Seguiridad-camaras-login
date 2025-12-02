@@ -1,0 +1,28 @@
+<div class="timeline-wrapper">
+    <div class="timeline-header">
+        <span class="label">Línea de Tiempo (24h)</span>
+        <div class="legend">
+            <span class="dot continuous"></span> Contínuo
+            <span class="dot motion"></span> Movimiento
+            <span class="dot alarm"></span> Alarma
+        </div>
+    </div>
+
+    <div class="timeline-track">
+        <!-- Regla de horas -->
+        <div class="ruler">
+            <div class="hour-mark" *ngFor="let h of hours" [style.left.%]="(h / 24) * 100">
+                {{ h }}:00
+            </div>
+        </div>
+
+        <!-- Bloques de grabación -->
+        <div class="blocks-container">
+            <div *ngFor="let block of processedBlocks" class="recording-block"
+                [ngClass]="block.triggerType.toLowerCase()" [style.left]="block.style.left"
+                [style.width]="block.style.width"
+                [title]="block.cameraName + ' (' + (block.startTime | date:'HH:mm') + ' - ' + (block.endTime | date:'HH:mm') + ')'">
+            </div>
+        </div>
+    </div>
+</div>

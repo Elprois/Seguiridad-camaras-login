@@ -1,0 +1,52 @@
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">Historial de Grabaciones</h1>
+        <p class="page-subtitle">Consulta y gestión de registros de video (CCTV Logs)</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters-card">
+        <div class="filter-group">
+            <label>Cámara</label>
+            <select [(ngModel)]="filters.camera">
+                <option value="All">Todas las Cámaras</option>
+                <option *ngFor="let cam of cameras" [value]="cam">{{ cam }}</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Tipo de Evento</label>
+            <select [(ngModel)]="filters.type">
+                <option value="All">Todos</option>
+                <option value="MOTION">Movimiento</option>
+                <option value="ALARM">Alarma</option>
+                <option value="CONTINUOUS">Contínuo</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Fecha Inicio</label>
+            <input type="datetime-local" [(ngModel)]="filters.start">
+        </div>
+
+        <div class="filter-group">
+            <label>Fecha Fin</label>
+            <input type="datetime-local" [(ngModel)]="filters.end">
+        </div>
+
+        <div class="filter-actions">
+            <button class="btn-primary" (click)="search()" [disabled]="loading">
+                <span *ngIf="!loading">🔍 Buscar</span>
+                <span *ngIf="loading">⏳ ...</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <app-timeline [recordings]="recordings"></app-timeline>
+
+    <!-- Tabla de Resultados -->
+    <app-recordings-table [recordings]="recordings" (play)="onPlay($event)" (download)="onDownload($event)"
+        (toggleLock)="onLock($event)">
+    </app-recordings-table>
+</div>
