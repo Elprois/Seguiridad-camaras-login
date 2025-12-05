@@ -39,6 +39,9 @@
                 <span *ngIf="!loading">🔍 Buscar</span>
                 <span *ngIf="loading">⏳ ...</span>
             </button>
+            <button class="btn-secondary" (click)="showUploadModal = true">
+                📤 Subir
+            </button>
         </div>
     </div>
 
@@ -49,4 +52,11 @@
     <app-recordings-table [recordings]="recordings" (play)="onPlay($event)" (download)="onDownload($event)"
         (toggleLock)="onLock($event)">
     </app-recordings-table>
+
+    <app-video-player *ngIf="selectedRecording" [recording]="selectedRecording" (close)="selectedRecording = null">
+    </app-video-player>
+
+    <app-recordings-upload *ngIf="showUploadModal" (close)="showUploadModal = false"
+        (uploadComplete)="onUploadComplete()">
+    </app-recordings-upload>
 </div>

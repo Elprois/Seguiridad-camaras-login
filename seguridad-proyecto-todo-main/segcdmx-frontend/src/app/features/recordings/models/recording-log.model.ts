@@ -2,7 +2,8 @@ export type TriggerType = 'MOTION' | 'CONTINUOUS' | 'ALARM';
 
 export interface RecordingLog {
     id: string;            // uuid
-    cameraName: string;
+    cameraId: string;
+    cameraName?: string;
     startTime: string;     // ISO string (Date serializable)
     endTime: string;       // ISO string
     triggerType: TriggerType;

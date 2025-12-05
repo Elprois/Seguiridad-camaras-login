@@ -1,0 +1,13 @@
+<div class="modal-overlay" *ngIf="recording" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h3>{{ recording.cameraName }} - {{ recording.startTime | date:'medium' }}</h3>
+            <button class="close-btn" (click)="onClose()">×</button>
+        </div>
+        <div class="video-container">
+            <video controls autoplay [src]="videoUrl">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div>

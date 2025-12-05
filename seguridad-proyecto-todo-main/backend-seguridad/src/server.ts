@@ -105,10 +105,24 @@ import { CheckOut } from './application/use-cases/registro-asistencia/check-out'
 import { LoginUser } from './application/use-cases/auth/login-user';
 import { AuthController } from './infrastructure/web/auth/auth.controller';
 import { authRouter } from './infrastructure/web/auth/auth.routes';
+import { SupabaseRecordingRepository } from './infrastructure/repositories/supabase-recording.repository';
+import { GetRecordings } from './application/use-cases/recording/get-recordings';
+import { GetRecordingById } from './application/use-cases/recording/get-recording-by-id';
+import { LockRecording } from './application/use-cases/recording/lock-recording';
+import { DeleteRecording } from './application/use-cases/recording/delete-recording';
+import { RecordingController } from './infrastructure/web/controllers/recording.controller';
+import { recordingRouter } from './infrastructure/web/routes/recording.routes';
+
+import path from 'path';
+import { RecordingUploadController } from './infrastructure/web/controllers/recording-upload.controller';
+import { recordingUploadRouter } from './infrastructure/web/routes/recording-upload.routes';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK' });
@@ -127,6 +141,7 @@ const equipoCatalogoRepository = new SupabaseEquipoCatalogoRepository();
 const equipoAsignadoRepository = new SupabaseEquipoAsignadoRepository();
 const certificacionRepository = new SupabaseCertificacionRepository();
 const guardiaCertificacionRepository = new SupabaseGuardiaCertificacionRepository();
+const recordingRepository = new SupabaseRecordingRepository();
 
 // Use Cases
 const createRol = new CreateRol(rolRepository);
@@ -208,6 +223,13 @@ const getAllGuardiaCertificaciones = new GetAllGuardiaCertificaciones(guardiaCer
 const updateGuardiaCertificacion = new UpdateGuardiaCertificacion(guardiaCertificacionRepository);
 const deleteGuardiaCertificacion = new DeleteGuardiaCertificacion(guardiaCertificacionRepository);
 
+const recordingUploadController = new RecordingUploadController(recordingRepository);
+
+const getRecordings = new GetRecordings(recordingRepository);
+const getRecordingById = new GetRecordingById(recordingRepository);
+const lockRecording = new LockRecording(recordingRepository);
+const deleteRecording = new DeleteRecording(recordingRepository);
+
 // Controllers
 const rolController = new RolController(createRol, getRol, getAllRols, updateRol, deleteRol);
 const usuarioController = new UsuarioController(createUsuario, getUsuario, getAllUsuarios, updateUsuario, deleteUsuario);
@@ -274,6 +296,12 @@ const guardiaCertificacionController = new GuardiaCertificacionController(
     updateGuardiaCertificacion,
     deleteGuardiaCertificacion
 );
+const recordingController = new RecordingController(
+    getRecordings,
+    getRecordingById,
+    lockRecording,
+    deleteRecording
+);
 
 // Swagger
 setupSwagger(app);
@@ -292,6 +320,8 @@ app.use('/equipos-catalogo', equipoCatalogoRouter(equipoCatalogoController));
 app.use('/equipos-asignados', equipoAsignadoRouter(equipoAsignadoController));
 app.use('/certificaciones', certificacionRouter(certificacionController));
 app.use('/guardias-certificaciones', guardiaCertificacionRouter(guardiaCertificacionController));
+app.use('/recordings', recordingRouter(recordingController));
+app.use('/recordings', recordingUploadRouter(recordingUploadController));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
